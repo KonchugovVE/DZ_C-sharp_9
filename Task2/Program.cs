@@ -1,7 +1,7 @@
-﻿// Задача 1: Задайте значения M и N. Напишите программу, которая выведет все чётные натуральные числа в промежутке от M до N 
-//с помощью рекурсии.
-// M = 1; N = 5 -> "2, 4"
-// M = 4; N = 8 -> "4, 6, 8"
+﻿// Задача 2: Задайте значения M и N. Напишите программу, 
+//которая найдёт сумму натуральных элементов в промежутке от M до N с помощью рекурсии.
+// M = 1; N = 15 -> 120
+// M = 4; N = 8 -> 30
 
 int EnterNum(string text)
 {
@@ -21,30 +21,30 @@ bool ValidationCheck(int m, int n)
     return false;             //В подавляющем большинстве российских источников традиционно принят первый подход.
 }
 
-void OutputEvenNumbersFromMtoN(int m, int n, int num)
+void SumNaturesMtoN(int m, int n, int sum = 0)
 {
-    if (num % 2 == 0)
+    if (m <= n)
     {
-        System.Console.Write($"{num}\t");
+        sum += m;
+        m++;
+        SumNaturesMtoN(m, n, sum);
     }
-    num ++;
-    if (num > n)
+    else
     {
-        return;
+        System.Console.WriteLine($" {sum}");
     }
-    OutputEvenNumbersFromMtoN(m, n, num);
+    return;
 }
 
-int m = EnterNum("Введите первое число");
+int m = EnterNum("Введите первое значение");
 
-int n = EnterNum("Введите второу число");
+int n = EnterNum("Введите второе значение");
 
-int num = m;
 
-if (ValidationCheck (m,n))
+if (ValidationCheck(m, n))
 {
-  System.Console.Write($"Четные числа от {m} до {n}: ");
-  OutputEvenNumbersFromMtoN(m,n,num);   
+    System.Console.Write($"Сумма элиментов между {m} и {n} =");
+    SumNaturesMtoN(m, n);
 }
 else
 {
